@@ -12,7 +12,10 @@ struct CalcBtn: View {
     var action: () -> Void
     var body: some View {
         Button(action: action){
-            Text(label).frame(maxWidth:.infinity, minHeight:40).background(.black).foregroundStyle(.white).cornerRadius(5)
+            Text(label).frame(maxWidth:.infinity, minHeight:40)
+                .colorInvert()
+                .foregroundStyle(.white)
+                .cornerRadius(10)
         }
     }
 }
