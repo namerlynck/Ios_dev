@@ -1,0 +1,18 @@
+//
+//  ResultsView.swift
+//  WKQatar
+//
+//  Created by Nathan Amerlynck on 21/10/2025.
+//
+
+import SwiftUI
+
+struct ResultsView: View {
+    var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    }
+}
+
+#Preview {
+    ResultsView()
+}

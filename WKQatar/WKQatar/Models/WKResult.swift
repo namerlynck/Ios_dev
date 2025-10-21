@@ -16,7 +16,7 @@ class WKResult: Codable, Hashable {
     //hashable
     func hash(into hasher: inout Hasher) {
         hasher.combine(matchNumber)
-       
+    
     }
     
     let matchNumber, roundNumber: Int
