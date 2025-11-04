@@ -12,27 +12,53 @@ class UurroosterDataStore {
     var uurrooster : [EventModel]
     
     init() {
-        
+        uurrooster = [EventModel]()
     }
     
     private func sort(){
-       
+        uurrooster.sort{index1, index2 in
+            index1.startDateTime > index2.startDateTime}
     }
     
     func addEvent(event: EventModel ){
-        
+        event.id = UUID().uuidString
+        uurrooster.append(event)
+        sort()
     }
     
     func updateEvent(event: EventModel ){
-        
+        for model in uurrooster {
+            if event.id.elementsEqual(model.id){
+                model.endDateTime = event.endDateTime
+                model.type = event.type
+                model.allDay = event.allDay
+                model.location = event.location
+                model.startDateTime = event.startDateTime
+                model.title = event.title
+            }
+        }
+        sort()
     }
     
     func deleteEvent(id: String) {
-       
+        //uurrooster wordt hier dus de gefilterde array, zonder het gefilterde element
+        uurrooster = uurrooster.filter({ eventInList in
+            //return steekt de elementen waarvan hun id niet (!) gelijk is aan de parameter id terug in uurrooster
+            return !eventInList.id.elementsEqual(id)
+        })
     }
     
     func getEvent(id: String) -> EventModel {
-        
+        let filtered = uurrooster.filter({ eventInList in
+            return eventInList.id.elementsEqual(id)
+        })
+        if filtered.count > 0 {
+            //returnt als er MINSTENS 1 is gevonden
+            return filtered[0]
+        } else {
+            //indien er NIETS is gevonden dan wordt er een leeg eventmodel weergegeven (wss)
+            return EventModel()
+        }
     }
     
     func loadData() async {
