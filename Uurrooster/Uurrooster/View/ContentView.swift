@@ -8,17 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var dataStore = UurroosterDataStore()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        UurroosterList().environment(dataStore)
     }
 }
 
-#Preview {
-    ContentView()
-}
+
