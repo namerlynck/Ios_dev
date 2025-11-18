@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct UurroosterDetail: View {
-    var event : EventModel
+    //var event : EventModel
+    @State private var isEditing = false
+    var event: EventModel   // <<< this must be a binding!
+    
     var body: some View {
         VStack{
             HStack{
@@ -26,15 +29,49 @@ struct UurroosterDetail: View {
         VStack{
             Divider()
             HStack{
-                if let location = event.location, !location.isEmpty {
-                    Text(location)
-                } else {
-                    Text("Unknown location")
+                Text(event.location)
+                Spacer()
+            }
+            VStack{
+                //met if want check if all day
+                if event.allDay {
+                    HStack{
+                        Text("Volledige dag")
+                        Spacer()
+                        Text(DateUtil.formatDate(date: event.startDateTime))
+                    }
+                } else{
+                    HStack{
+                        Text("Start")
+                        Spacer()
+                        Text(DateUtil.formatDateTime(date: event.startDateTime))
+                    }.padding(.bottom, 5)
+                    HStack{
+                        Text("Einde")
+                        Spacer()
+                        Text(DateUtil.formatDateTime(date: event.endDateTime))
+                        
+                    }
+                }
+                Divider()
+                HStack{
+                    event.type == 0
+                    ? Image(systemName: "a.circle")
+                    : Image(systemName: "c.circle")
+                }
+                
+                
+            }
+        }.padding()
+            .toolbar() {
+                ToolbarItem(placement: .primaryAction) {
+                    NavigationLink { AddEventView(
+                        isNew : false, event: EventModel(from: event))
+                    } label: {
+                        Text("...")
+                    }
                 }
             }
-            HStack{
-                //met if want check if all day
-            }
-        }
     }
 }
+

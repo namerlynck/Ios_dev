@@ -12,7 +12,7 @@ class EventModel: Identifiable, Hashable {
     var id:String = ""
     var allDay: Bool = false
     var title: String = ""
-    var location: String? = ""
+    var location: String = ""
     var type: Int = 0
     var startDateTime: Date = Date()
     var endDateTime: Date = Date()

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UurroosterList: View {
-    @Environment(UurroosterDataStore.self) var dataStore
+    @Environment(UurroosterDataStore.self) private var dataStore
     @State var loading = true
     @State private var selectedEvent: EventModel?
     var body: some View {
