@@ -1,0 +1,22 @@
+//
+//  ContentView.swift
+//  Gallery
+//
+//  Created by Nathan Amerlynck on 09/12/2025.
+//
+
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundStyle(.tint)
+            Text("Hello, world!")
+        }
+        .padding()
+    }
+}
+
+
