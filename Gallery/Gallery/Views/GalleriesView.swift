@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct GalleriesView: View {
+    @Environment(GalaryDataStore.self) private var dataStore
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        @Bindable var dataStore = dataStore
     }
 }
 

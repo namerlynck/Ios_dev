@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(GalaryDataStore.self) private var dataStore
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView{
+            Tab("Galleries", systemImage: "building.columns"){
+                GalleriesView()
+            }
+            Tab(dataStore.selecterGallarey?.name ?? "No Gallery selected", systemImage: "building.columns"){
+                GallerieDetailView()
+            }
         }
-        .padding()
     }
 }
 
