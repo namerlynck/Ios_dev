@@ -14,7 +14,7 @@ struct ContentView: View {
             Tab("Galleries", systemImage: "building.columns"){
                 GalleriesView()
             }
-            Tab(dataStore.selecterGallarey?.name ?? "No Gallery selected", systemImage: "building.columns"){
+            Tab(dataStore.selectedGallarey?.name ?? "No Gallery selected", systemImage: "paintpalette"){
                 GallerieDetailView()
             }
         }

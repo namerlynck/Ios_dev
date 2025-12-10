@@ -10,12 +10,13 @@ import Foundation
 @Observable
 class GalaryDataStore {
     let galleries : [Gallery]
-    private var _selecterGallery : Gallery? = nil
-    var selecterGallarey : Gallery? {
+    private var _selectedGallery : Gallery? = nil
+    var selectedGallarey : Gallery? {
         get{
-            return _selecterGallery
+            return _selectedGallery
         } set {
             path = [Route]()
+            _selectedGallery = newValue
         }
     }
     var path = [Route]()
@@ -27,8 +28,8 @@ class GalaryDataStore {
     
     func getArtWorksSelecterGallery () -> [Artwork]{
         var artworks = [Artwork]()
-        if selecterGallarey != nil {
-            for artist in selecterGallarey!.artists {
+        if selectedGallarey != nil {
+            for artist in selectedGallarey!.artists {
                 artworks.append(contentsOf: artist.artworks)
             }
         }
