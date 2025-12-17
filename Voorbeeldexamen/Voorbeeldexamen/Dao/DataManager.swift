@@ -1,15 +1,23 @@
 import Foundation
+@Observable
 class DataManager {
     var cars: [Car] = []
+    
+    //init(){
+    //    cars = [Car]()
+    //}
+    
+    struct CarsResponse: Codable {
+        let cars: [Car]
+    }
      
     func loadCars() async {
-       
-        
         do {
             print("⏳ Loading car data...")
-            try await Task.sleep(for: .seconds(1))
-            
-            //load cars
+            try await Task.sleep(for: .seconds(0))
+            let response: CarsResponse = load("cars.json")
+            cars = response.cars
+            sort()
             print("✅ Data loaded successfully.")
         } catch {
             print("❌ Failed to load cars:", error)
@@ -17,7 +25,13 @@ class DataManager {
         
         
     }
+    private func sort(){
+        cars.sort{ c1, c2 in
+            c1.id < c2.id
+        }
+    }
     
+   
 }
 
 func load<T: Decodable>(_ filename: String) -> T {
@@ -40,4 +54,8 @@ func load<T: Decodable>(_ filename: String) -> T {
     } catch {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
     }
+    
+    
 }
+
+
